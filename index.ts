@@ -9,22 +9,14 @@
 
 import { createPrompt } from 'bun-promptx'
 
-const logLength = createPrompt('What is the length of your log? ')
+const logLength = createPrompt('What is the length of your log in meters? (0.25, 0.5, 1): ')
+let logLengthFloat = parseFloat(logLength.value)
 const capacity = 1100
 const weight = 20
-const maxLength = capacity / weight
+let maxLength = capacity / weight
+let numberOfLogs = maxLength / logLengthFloat
 
-
-
-console.log(`Hey there ${String(name.value)}`)
-
-const ageString = createPrompt('What is your age? ')
-
-let ageNumber = parset(ageString.value)
-
-ageNumber = ageNumber - 10
-
-console.log(`Age is > ${ageNumber}`)
+console.log(`Hey there ${numberOfLogs.value}`)
 
 
 console.log('\nDone.')
