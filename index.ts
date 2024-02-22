@@ -16,7 +16,7 @@ const weight = 20
 let maxLength = capacity / weight
 let numberOfLogs = maxLength / logLengthFloat
 
-console.log(`Hey there ${numberOfLogs.value}`)
+console.log(`The truck can carry ${numberOfLogs} that are ${logLengthFloat}m each.`)
 
 
 console.log('\nDone.')
