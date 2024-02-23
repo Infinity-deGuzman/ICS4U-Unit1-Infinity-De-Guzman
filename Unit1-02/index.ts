@@ -23,3 +23,4 @@ if (isNaN(massFloat) || massFloat < 0) {
 }
 
 console.log("\nDone.")
+
