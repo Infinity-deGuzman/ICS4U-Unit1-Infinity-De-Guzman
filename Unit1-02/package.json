@@ -1,0 +1,14 @@
+{
+  "name": "bun-install-eslint---save-dev",
+  "module": "bun install --save-dev eslint-plugin-jsdoc",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "eslint-plugin-jsdoc": "^48.2.0"
+  }
+}
