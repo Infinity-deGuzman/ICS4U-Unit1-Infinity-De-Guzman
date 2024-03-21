@@ -1,36 +1,53 @@
-/* This program checks for a runtime error
-*
-* @author  Infinity de Guzman
-* @version 1.0
-* @since   2024-03-07
-*/
+/**
+ * This program checks for a runtime error
+ *
+ * @author  Infinity de Guzman
+ * @version 1.0
+ * @since   2024-03-07
+ */
 
-import java.util.scanner;
+import java.util.InputMismatchException;
+import java.util.Scanner; 
 
-public class Main {
-        public static void main(String[] args) {
-        // this function checks for runtime error
-        //
-        // create Scanner object for user input
-        Scanner scanner = new Scanner(System.in);
+final class EnergyCalculator {
 
-        // input
-        System.out.print("Enter the mass of an object in kilograms: ");
-        String massAsString = scanner.nextLine();
+    /* Speed of light in m/s */
+    public static final double LIGHT = 2.998e8;
 
-        // process & output
+    private EnergyCalculator() {
+        // makes things static
+        throw new IllegalStateException("Error: can't instantiate.");
+    }
+
+/**
+ * Main method to run the energy calculator.
+ *
+ * @param args command-line arguments
+ */
+    public static void main(final String[] args) {
+        // Input
         try {
-                int massAsNumber = Integer.parseInt(massAsString);
-                const light = 2.998e8
-                const energy = massAsString * (Math.pow(light, 2))
+            final Scanner input = new Scanner(System.in);
+            System.out.print("Enter the mass of an object in kilograms: ");
+            final double mass = input.nextDouble();
+            input.close();
 
-                System.out.printf("%d.%n kg of mass would produce", massAsNumber);
-        } catch (NumberFormatException e) {
-                 System.out.printf("invalid input.");
+            // Process & Output
+            final double energy = mass * Math.pow(LIGHT, 2);
+            if (mass < 0) {
+                System.out.println("invalid input. cannot be negative.");
+                System.exit(0);
+
+            } else {
+                System.out.printf(
+                    "%.2f kg of mass would produce %.2e J of energy.%n",
+                    mass,
+                    energy);
+            }
+        } catch (InputMismatchException error) {
+            System.out.println("invalid input.");
         }
 
-        // close the Scanner object
-        scanner.close();
         System.out.println("\nDone.");
-        }
+    }
 }
