@@ -1,5 +1,6 @@
 /**
- * This program checks for a runtime error
+ * This program takes the mass of an object
+ * and calculates the energy released.
  *
  * @author  Infinity de Guzman
  * @version 1.0
@@ -12,42 +13,34 @@ import java.util.Scanner;
 final class EnergyCalculator {
 
     /* Speed of light in m/s */
-    public static final double LIGHT = 2.998e8;
+    public static final int LIGHT = 299792458;
 
     private EnergyCalculator() {
-        // makes things static
         throw new IllegalStateException("Error: can't instantiate.");
     }
 
-/**
- * Main method to run the energy calculator.
- *
- * @param args command-line arguments
- */
     public static void main(final String[] args) {
-        // Input
         try {
             final Scanner input = new Scanner(System.in);
             System.out.print("Enter the mass of an object in kilograms: ");
             final double mass = input.nextDouble();
-            input.close();
 
-            // Process & Output
-            final double energy = mass * Math.pow(LIGHT, 2);
             if (mass < 0) {
                 System.out.println("invalid input. cannot be negative.");
-                System.exit(0);
+                System.exit(0); // Exit the program
 
-            } else {
-                System.out.printf(
-                    "%.2f kg of mass would produce %.2e J of energy.%n",
-                    mass,
-                    energy);
             }
-        } catch (InputMismatchException error) {
+
+            final double energy = mass * Math.pow(LIGHT, 2);
+                System.out.println(mass + " kg of mass would produce "
+                    + String.format("%.2e", energy) + " J of energy.");
+                input.close();
+            }
+        } catch (InputMismatchException ex) {
             System.out.println("invalid input.");
         }
 
         System.out.println("\nDone.");
     }
 }
+
