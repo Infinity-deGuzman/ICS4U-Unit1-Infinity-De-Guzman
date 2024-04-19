@@ -19,7 +19,7 @@ while (1) {
   const guessInt = parseInt(userGuess.value || "-1")
   // error check
   if (isNaN(guessInt) == true || guessInt < 1 || guessInt > 8) {
-    console.log("Invalid input. (This won't count as a guess)\n")
+    console.log("cannot be counted as a guess.\n")
   } else {
     // process
     totalGuess += 1
