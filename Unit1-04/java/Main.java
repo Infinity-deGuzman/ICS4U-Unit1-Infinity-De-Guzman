@@ -13,7 +13,7 @@ import java.util.Scanner;
 /**
 * This is the standard "NumberGuessing" program.
 */
-final class NumberGuessing {
+final class NumberGuess {
 
     /**
     * Prevent instantiation.
@@ -23,7 +23,7 @@ final class NumberGuessing {
     * @throws IllegalStateException if this is ever called
     *
     */
-    private NumberGuessing() {
+    private NumberGuess() {
         throw new IllegalStateException("Cannot be instantiated");
     }
 
