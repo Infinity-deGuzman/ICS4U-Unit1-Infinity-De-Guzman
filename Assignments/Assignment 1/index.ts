@@ -7,6 +7,8 @@
  * Since:   2024-05-27
  */
 
+// don't forget to install readline-sync
+
 import readlineSync from 'readline-sync'
 
 type Move = 'rock' | 'paper' | 'scissors'
