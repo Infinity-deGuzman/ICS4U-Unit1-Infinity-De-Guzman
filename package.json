@@ -1,1 +1,1 @@
-{ "dependencies": { "bun-promptx": "^0.2.0" } }
+{ "dependencies": { "bun-promptx": "^0.2.0", "readline-sync": "^1.4.10" } }
