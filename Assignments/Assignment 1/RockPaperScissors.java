@@ -1,3 +1,12 @@
+/*
+ * This program lets
+ * the user play rock, paper, scissors
+ *
+ * @author  Infinity de Guzman
+ * @version 1.0
+ * @since   2024-05-27
+ */
+
 import java.util.Scanner;
 import java.util.Random;
 

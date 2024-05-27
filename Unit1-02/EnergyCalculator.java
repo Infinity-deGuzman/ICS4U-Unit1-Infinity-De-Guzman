@@ -1,11 +1,4 @@
-/*
- * This program takes the mass of an object
- * and calculates the energy released.
- *
- * @author  Infinity de Guzman
- * @version 1.0
- * @since   2024-03-07
- */
+
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
