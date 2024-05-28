@@ -1,58 +1,104 @@
 /*
- * This program lets
- * the user play rock, paper, scissors
+ * This program lets the user play rock, paper, scissors.
  *
- * @author  Infinity de Guzman
- * @version 1.0
- * @since   2024-05-27
+ * Author:  Infinity de Guzman
+ * Version: 1.0
+ * Since:   2024-05-27
  */
 
-import java.util.Scanner;
 import java.util.Random;
+import java.util.Scanner;
 
+/**
+ * A class that allows the user to play a game of rock, paper, scissors.
+ * 
+ * Author:  Infinity
+ * Version: 1.0
+ * Since:   2024-05-27
+ */
 final class RockPaperScissors {
-    
+
+    /**
+     * Prevent unsupported operation.
+     * Throw an exception UnsupportedOperationException
+     * if this is ever called.
+     *
+     * @throws UnsupportedOperationException if this is ever called
+     */
+    private RockPaperScissors() {
+        throw new UnsupportedOperationException("Utility class");
+    }
+
+    /**
+     * Enumeration representing the possible moves.
+     */
     enum Move { ROCK, PAPER, SCISSORS }
 
+    /**
+     * Gets a random move for the computer.
+     *
+     * @return A randomly selected Move (ROCK, PAPER, or SCISSORS).
+     */
     public static Move getRandomMove() {
-        Random random = new Random();
+        final Random random = new Random();
         return Move.values()[random.nextInt(Move.values().length)];
     }
 
+    /**
+     * Determines the winner between the player's move and the computer's move.
+     *
+     * @param playerMove   The move chosen by the player. Must be non-null.
+     * @param computerMove The move chosen by the computer. Must be non-null.
+     * @return A string indicating the result of the game: "It's a tie!", 
+     * "Player wins!", or "Computer wins!".
+     */
     public static String determineWinner(Move playerMove, Move computerMove) {
+        final String result;
         if (playerMove == computerMove) {
-            return "It's a tie!";
+            result = "It's a tie!";
+        } else if (playerMove == Move.ROCK && computerMove == Move.SCISSORS
+            || playerMove == Move.PAPER && computerMove == Move.ROCK
+            || playerMove == Move.SCISSORS && computerMove == Move.PAPER) {
+            result = "Player wins!";
+        } else {
+            result = "Computer wins!";
         }
-        if ((playerMove == Move.ROCK && computerMove == Move.SCISSORS) ||
-            (playerMove == Move.PAPER && computerMove == Move.ROCK) ||
-            (playerMove == Move.SCISSORS && computerMove == Move.PAPER)) {
-            return "Player wins!";
-        }
-        return "Computer wins!";
+        return result;
     }
 
+    /**
+     * Runs the Rock-Paper-Scissors game, prompting the user for input and, 
+     * displaying the result.
+     */
     public static void playGame() {
-        Scanner scanner = new Scanner(System.in);
-        Move[] moves = Move.values();
-        Move playerMove;
+        final Scanner scanner = new Scanner(System.in);
+        final Move[] moves = Move.values();
+        Move playerMove = null;
 
         while (true) {
             System.out.print("Enter rock, paper, or scissors: ");
-            String input = scanner.nextLine().toLowerCase();
+            final String input = scanner.nextLine().toLowerCase();
             try {
                 playerMove = Move.valueOf(input.toUpperCase());
                 break;
-            } catch (IllegalArgumentException e) {
-                System.out.println("Invalid move. Please enter rock, paper, or scissors.");
+            } catch (IllegalArgumentException ex) {
+                System.out.println(
+                    "Invalid move. Please enter rock, paper, or scissors."
+                );
             }
         }
 
-        Move computerMove = getRandomMove();
+        final Move computerMove = getRandomMove();
         System.out.println("Player move: " + playerMove);
         System.out.println("Computer move: " + computerMove);
         System.out.println(determineWinner(playerMove, computerMove));
     }
 
+    /**
+     * The main method to start the Rock-Paper-Scissors game.
+     *
+     * @param args Command-line arguments (not used).
+     */
     public static void main(String[] args) {
         playGame();
     }
