@@ -11,10 +11,11 @@ import java.util.Scanner;
 
 /**
  * A class that allows the user to play a game of rock, paper, scissors.
- * 
+ * <p>
  * Author:  Infinity
  * Version: 1.0
  * Since:   2024-05-27
+ * </p>
  */
 final class RockPaperScissors {
 
@@ -49,8 +50,8 @@ final class RockPaperScissors {
      *
      * @param playerMove   The move chosen by the player. Must be non-null.
      * @param computerMove The move chosen by the computer. Must be non-null.
-     * @return A string indicating the result of the game: "It's a tie!", 
-     * "Player wins!", or "Computer wins!".
+     * @return A string indicating the result of the game.
+     *
      */
     public static String determineWinner(Move playerMove, Move computerMove) {
         final String result;
@@ -67,7 +68,7 @@ final class RockPaperScissors {
     }
 
     /**
-     * Runs the Rock-Paper-Scissors game, prompting the user for input and, 
+     * Runs the Rock-Paper-Scissors game, prompting the user for input and
      * displaying the result.
      */
     public static void playGame() {
