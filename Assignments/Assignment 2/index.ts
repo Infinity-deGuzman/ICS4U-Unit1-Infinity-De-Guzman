@@ -44,17 +44,17 @@ function dayOfWeek(year: number, month: number, day: number): string {
 
 // Constants & Variables
 const yearPrompt = createPrompt("Enter a year: ")
-if (isNaN(yearPrompt || yearPrompt < 0)) {
+if (isNaN(yearPrompt) || yearPrompt < 0) {
     console.log("Invalid input.")
 } else {
     let year = parseFloat(yearPrompt.value || "-1")
     const monthPrompt = createPrompt("Enter a month: ")
-    if (isNaN(monthPrompt || monthPrompt < 0)) {
+    if (isNaN(monthPrompt) || monthPrompt < 0) {
         console.log("Invalid input.")
     } else {
         let month = parseFloat(monthPrompt.value || "-1")
         const dayPrompt = createPrompt("Enter a day: ")
-        if (isNaN(dayPrompt || dayPrompt < 0)) {
+        if (isNaN(dayPrompt) || dayPrompt < 0) {
             console.log("Invalid input.")
         } else {
             let day = parseFloat(dayPrompt.value || "-1")
