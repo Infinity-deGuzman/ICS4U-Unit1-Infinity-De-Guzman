@@ -7,19 +7,16 @@
  * Since:   2024-05-27
  */
 
-// don't forget to install readline-sync
+// don't forget to install prompt-sync
+const prompt = require('prompt-sync')()
 
-import readlineSync from 'readline-sync'
+const moves = ['rock', 'paper', 'scissors']
 
-type Move = 'rock' | 'paper' | 'scissors'
-
-const moves: Move[] = ['rock', 'paper', 'scissors']
-
-function getRandomMove(): Move {
+function getRandomMove() {
     return moves[Math.floor(Math.random() * moves.length)]
 }
 
-function determineWinner(playerMove: Move, computerMove: Move): string {
+function determineWinner(playerMove, computerMove) {
     if (playerMove === computerMove) {
         return "It's a tie!"
     }
@@ -33,24 +30,20 @@ function determineWinner(playerMove: Move, computerMove: Move): string {
     return 'Computer wins!'
 }
 
-function playGame(): void {
-    let playerMove: Move
 
-    while (true) {
-        const input = readlineSync.question('Enter rock, paper, or scissors: ').toLowerCase()
-        if (moves.includes(input as Move)) {
-            playerMove = input as Move
-            break
-        } else {
-            console.log('Invalid move. Please enter rock, paper, or scissors.')
-        }
+let playerMove
+
+while (true) {
+    const input = prompt('Enter rock, paper, or scissors: ').toLowerCase()
+    if (moves.includes(input)) {
+        playerMove = input
+        break
+    } else {
+        console.log('Invalid move. Please enter rock, paper, or scissors.')
     }
-
-    const computerMove = getRandomMove()
-    console.log(`Player move: ${playerMove}`)
-    console.log(`Computer move: ${computerMove}`)
-    console.log(determineWinner(playerMove, computerMove))
 }
 
-// Start the game
-playGame()
+const computerMove = getRandomMove()
+console.log(`Player move: ${playerMove}`)
+console.log(`Computer move: ${computerMove}`)
+console.log(determineWinner(playerMove, computerMove))

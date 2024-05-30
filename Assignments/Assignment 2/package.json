@@ -1,5 +1,5 @@
 {
-  "name": "assignment-1",
+  "name": "assignment-2",
   "module": "index.ts",
   "type": "module",
   "devDependencies": {
@@ -7,10 +7,5 @@
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
-  },
-  "dependencies": {
-    "bun-promptx": "^0.2.0",
-    "prompt-sync": "^4.2.0",
-    "readline-sync": "^1.4.10"
   }
 }
