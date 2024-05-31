@@ -3,26 +3,78 @@ import java.util.Scanner;
 /**
  * This program lets the user enter a date and
  * displays the day of the week for that date.
- *<p>
+ * <p>
  * Author:  Infinity de Guzman
  * Version: 1.0
  * Since:   2024-05-30
  * </p>
  */
-public final class DayOfWeekCalculator {
 
-    // Constants for doomsdays and anchor days
-    private static final int[] DOOMSDAY_PER_MONTH = {3, 0, 0, 4, 9, 6, 11, 8, 5, 10, 7, 12};
-    private static final int[] ANCHOR_DAYS = {2, 0, 5, 3};
+final class DayOfWeekCalculator {
+
+    /**
+     * Array containing the names of the days of the week.
+     */
     private static final String[] DAYS_OF_WEEK = {
-        "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
-        };
+        "Sunday", "Monday", "Tuesday", "Wednesday",
+        "Thursday", "Friday", "Saturday",
+    };
 
-    // Constant indices and other values
+    /**
+     * Array containing the anchor days for each month.
+     */
+    private static final int[] ANCHOR_DAYS = {2, 0, 5, 3};
+
+    /**
+     * Array containing the doomsday constant
+     * for each month for day of the week calculation.
+     * The index corresponds to the month,
+     * starting from January (index 0).
+     * For example, index 0 corresponds to January,
+     * index 1 to February, and so on.
+     */
+    private static final int[] DOOMSDAY_PER_MONTH = {
+        3, 0, 0, 4, 9, 6, 11, 8, 5, 10, 7, 12,
+    };
+
+    /**
+     * Dash separator used for formatting output in day of the week calculation.
+     */
+    private static final String DASH_SEPARATOR = "-";
+
+    /**
+     * Number of days in a week.
+     */
     private static final int DAYS_IN_WEEK = 7;
+
+    /**
+     * Modulus for century anchor day calculation.
+     */
     private static final int CENTURY_ANCHOR_MOD = 4;
+
+    /**
+     * Base year divisor for day of the week calculation.
+     */
     private static final int BASE_YEAR_DIVISOR = 100;
+
+    /**
+     * Four years divisor for day of the week calculation.
+     */
     private static final int FOUR_YEARS_DIVISOR = 4;
+
+    /**
+     * Prevent instantiation.
+     * Throw an exception AssertionError
+     * if this is ever called.
+     *
+     * @throws AssertionError if this is ever called
+     */
+    private DayOfWeekCalculator() {
+        /*
+        * Prevent instantiation.
+        */
+        throw new AssertionError("DayOfWeekCalculator cannot be instantiated");
+    }
 
     /**
      * Returns the day of the week for a given date.
@@ -33,12 +85,14 @@ public final class DayOfWeekCalculator {
      * @return The day of the week for the given date.
      */
     public static String dayOfWeek(int year, int month, int day) {
-        int yearLastTwoDigits = year % 100;
-        int century = year / BASE_YEAR_DIVISOR;
-        int centuryAnchorDay = ANCHOR_DAYS[century % CENTURY_ANCHOR_MOD];
-        int yearDoomsday = (yearLastTwoDigits + (yearLastTwoDigits / FOUR_YEARS_DIVISOR)) % DAYS_IN_WEEK;
-        int monthDoomsday = DOOMSDAY_PER_MONTH[month - 1];
-        int dayOfWeekIndex = (day - monthDoomsday + yearDoomsday + centuryAnchorDay) % DAYS_IN_WEEK;
+        final int yearLastTwoDigits = year % BASE_YEAR_DIVISOR;
+        final int century = year / BASE_YEAR_DIVISOR;
+        final int centuryAnchorDay = ANCHOR_DAYS[century % CENTURY_ANCHOR_MOD];
+        final int yearDoomsday = (yearLastTwoDigits
+            + (yearLastTwoDigits / FOUR_YEARS_DIVISOR)) % DAYS_IN_WEEK;
+        final int monthDoomsday = DOOMSDAY_PER_MONTH[month - 1];
+        final int dayOfWeekIndex = (day - monthDoomsday
+            + yearDoomsday + centuryAnchorDay) % DAYS_IN_WEEK;
 
         return DAYS_OF_WEEK[dayOfWeekIndex];
     }
@@ -57,12 +111,14 @@ public final class DayOfWeekCalculator {
             if (scanner.hasNextInt()) {
                 value = scanner.nextInt();
                 if (value < 0) {
-                    System.out.println("Invalid input. Please enter a non-negative number.");
+                    System.out.println(
+                        "Please enter a non-negative number.");
                     value = -1;
                 }
             } else {
-                System.out.println("Invalid input. Please enter a valid number.");
-                scanner.next(); // Clear invalid input
+                System.out.println(
+                    "Please enter a valid number.");
+                scanner.next();
             }
         } while (value < 0);
         return value;
@@ -75,11 +131,14 @@ public final class DayOfWeekCalculator {
      */
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
-            int year = getInput(scanner, "Enter a year: ");
-            int month = getInput(scanner, "Enter a month: ");
-            int day = getInput(scanner, "Enter a day: ");
+            final int year = getInput(scanner, "Enter a year: ");
+            final int month = getInput(scanner, "Enter a month: ");
+            final int day = getInput(scanner, "Enter a day: ");
 
-            System.out.println(year + "-" + month + "-" + day + " is a " + dayOfWeek(year, month, day) + ".");
+            System.out.println(year + DASH_SEPARATOR + month
+                + DASH_SEPARATOR + day + " is a "
+                + dayOfWeek(year, month, day) + ".");
+
             System.out.println("\nDone.");
         }
     }
